@@ -8,4 +8,4 @@ class Prueba(models.Model):
     cantidad = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.title + ', ' + self.subtitle 
