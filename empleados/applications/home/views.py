@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import (
+    TemplateView, 
+    ListView, 
+    CreateView
+)
 # import models
 from .models import Prueba
 
@@ -17,3 +21,10 @@ class ListPrueba(ListView):
     template_name = 'home/list_prueba.html'
     model = Prueba
     context_object_name = 'list'
+
+
+
+class PruebaCreateView(CreateView):
+    template_name = "home/add.html"
+    model = Prueba
+    fields = ['title', 'subtitle', 'quantity']
