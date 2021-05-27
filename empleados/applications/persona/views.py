@@ -50,3 +50,13 @@ class ListByKword(ListView):
         print(list_employers)
         return list_employers
 
+
+class ListHabilitiesEmployer(ListView):
+    template_name = 'persona/habilities.html'
+    context_object_name = 'habilities'
+
+    def get_queryset(self):
+        id_employer = self.kwargs['id_employer']
+        employer = Empleado.objects.get(id=id_employer)
+        return employer.habilities.all()
+

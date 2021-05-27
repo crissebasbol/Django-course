@@ -8,4 +8,5 @@ urlpatterns = [
     path('list_by_deparment/<name_department>', views.ListByDepartment.as_view()),
     path('list_by_job/<job>', views.ListByJob.as_view()),
     path('search_employer/', views.ListByKword.as_view()),
+    path('list_habilities_employer/<id_employer>', views.ListHabilitiesEmployer.as_view()),
 ]
