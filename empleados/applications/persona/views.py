@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 #models
 from .models import Empleado
@@ -60,3 +60,8 @@ class ListHabilitiesEmployer(ListView):
         employer = Empleado.objects.get(id=id_employer)
         return employer.habilities.all()
 
+
+
+class EmployersDetailView(DetailView):
+    model = Empleado
+    template_name = "persona/detail_employer.html"
