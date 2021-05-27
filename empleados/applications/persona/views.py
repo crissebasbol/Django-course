@@ -33,3 +33,18 @@ class ListByJob(ListView):
             job=job
         )
         return list_employers
+
+
+class ListByKword(ListView):
+    """ List employers by key workd """
+    template_name = 'persona/by_kword.html'
+    context_object_name = 'employers'
+
+    def get_queryset(self):
+        kword = self.request.GET.get('kword', '')
+        list_employers = Empleado.objects.filter(
+            first_name=kword
+        )
+        print(list_employers)
+        return list_employers
+

@@ -1,0 +1,19 @@
+<h1>
+    Search employers by key word
+</h1>
+
+<form method="get"> {% csrf_token %}
+    <input type="text" id="kword" name="kword" placeholder="Insert name here">
+    <button type="submit">Search</button>
+</form>
+
+<h2>
+    List employers
+</h2>
+<ul>
+    
+    {% for e in employers %}
+        <li>{{ e }}</li>
+    {% endfor %}
+        
+</ul>
