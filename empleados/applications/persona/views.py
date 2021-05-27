@@ -14,6 +14,10 @@ class ListAllEmpleados(ListView):
 class ListByDepartment(ListView):
     """ List employers by department"""
     template_name = "persona/list_by_deparment.html"
-    queryset = Empleado.objects.filter(
-        departamento__name='Sistemas'
-    )
+
+    def get_queryset(self):
+        department = self.kwargs['name_department']
+        list_employers = Empleado.objects.filter(
+            departamento__name=department
+        )
+        return list_employers
