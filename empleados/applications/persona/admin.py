@@ -12,5 +12,15 @@ class EmpleadoAdmin(admin.ModelAdmin):
         'departamento',
         'job'
     )
+    search_fields = (
+        'first_name',
+    )
+    list_filter = (
+        'job',
+        'habilities',
+    )
+    filter_horizontal = (
+        'habilities',
+    )
 
 admin.site.register(Empleado, EmpleadoAdmin)
