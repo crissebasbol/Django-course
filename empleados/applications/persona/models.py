@@ -1,5 +1,6 @@
 from django.db import models
 from applications.departamento.models import Departamento
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Hability(models.Model): 
@@ -28,6 +29,7 @@ class Empleado(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='empleado', blank=True, null=True)
     habilities = models.ManyToManyField(Hability)
+    cv = RichTextField()
 
 
     class Meta:
