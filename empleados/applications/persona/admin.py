@@ -24,6 +24,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
     list_filter = (
         'job',
         'habilities',
+        'departamento',
     )
 
     filter_horizontal = (
