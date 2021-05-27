@@ -21,3 +21,15 @@ class ListByDepartment(ListView):
             departamento__name=department
         )
         return list_employers
+
+
+class ListByJob(ListView):
+    """ List employers by job"""
+    template_name = "persona/list_by_job.html"
+
+    def get_queryset(self):
+        job = self.kwargs['job']
+        list_employers = Empleado.objects.filter(
+            job=job
+        )
+        return list_employers
