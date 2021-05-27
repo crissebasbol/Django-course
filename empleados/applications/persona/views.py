@@ -8,6 +8,8 @@ from .models import Empleado
 
 class ListAllEmpleados(ListView):
     template_name = "persona/list_all.html"
+    paginate_by = 4
+    ordering = 'id'
     model = Empleado
 
 
