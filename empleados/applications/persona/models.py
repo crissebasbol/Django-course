@@ -2,6 +2,17 @@ from django.db import models
 from applications.departamento.models import Departamento
 # Create your models here.
 
+class Hability(models.Model): 
+    hability = models.CharField('Hability', max_length=50)
+
+    class Meta:
+        verbose_name = 'Hability'
+        verbose_name_plural = 'Employer habilities'
+
+    def __str__(self):
+        return self.hability
+
+
 class Empleado(models.Model):
     """ Model for each employer """
 
@@ -15,7 +26,8 @@ class Empleado(models.Model):
     last_name = models.CharField('Last name', max_length=60)
     job = models.CharField('Job', max_length=1, choices=JOB_CHOICES)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    #image = models.ImageField('Imagen', upload_to=None, height_field=None, width_field=None, max_length=None)
+    image = models.ImageField(upload_to='empleado', blank=True, null=True)
+    habilities = models.ManyToManyField(Hability)
 
 
     class Meta:
