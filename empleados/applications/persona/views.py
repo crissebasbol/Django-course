@@ -65,3 +65,10 @@ class ListHabilitiesEmployer(ListView):
 class EmployersDetailView(DetailView):
     model = Empleado
     template_name = "persona/detail_employer.html"
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(EmployersDetailView, self).get_context_data(**kwargs)
+        context['title'] = 'Employee of the month'
+        return context
+    
