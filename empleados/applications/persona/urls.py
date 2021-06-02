@@ -10,4 +10,5 @@ urlpatterns = [
     path('search_employer/', views.ListByKword.as_view()),
     path('list_habilities_employer/<id_employer>', views.ListHabilitiesEmployer.as_view()),
     path('see_employer/<pk>', views.EmployersDetailView.as_view()),
+    path('add_employer', views.EmpleadoCreateView.as_view()),
 ]
