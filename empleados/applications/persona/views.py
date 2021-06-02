@@ -78,3 +78,4 @@ class EmpleadoCreateView(CreateView):
     template_name = "persona/create_employer.html"
     #fields = ['first_name', 'last_name', 'job']
     fields = ('__all__')
+    success_url = 'add_employer'
