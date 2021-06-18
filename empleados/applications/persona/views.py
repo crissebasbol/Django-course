@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
-    ListView, DetailView, CreateView, TemplateView, UpdateView
+    ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 )
 
 #models
@@ -122,4 +122,11 @@ class EmployerUpdateView(UpdateView):
 
     def form_valid(self, form):
         return super(EmployerUpdateView, self).form_valid(form)
+
+
+class EmployerDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"
+    success_url = reverse_lazy('persona_app:correct')
+
 
