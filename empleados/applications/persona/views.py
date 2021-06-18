@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView, DetailView, CreateView, TemplateView
+)
 
 #models
 from .models import Empleado
@@ -71,6 +74,12 @@ class EmployersDetailView(DetailView):
         context = super(EmployersDetailView, self).get_context_data(**kwargs)
         context['title'] = 'Employee of the month'
         return context
+
+
+
+class SuccessView(TemplateView):
+    template_name = "persona/success.html"
+
     
 
 class EmpleadoCreateView(CreateView):
@@ -78,4 +87,4 @@ class EmpleadoCreateView(CreateView):
     template_name = "persona/create_employer.html"
     #fields = ['first_name', 'last_name', 'job']
     fields = ('__all__')
-    success_url = 'add_employer'
+    success_url = reverse_lazy('persona_app:correct')
