@@ -86,5 +86,17 @@ class EmpleadoCreateView(CreateView):
     model = Empleado
     template_name = "persona/create_employer.html"
     #fields = ['first_name', 'last_name', 'job']
-    fields = ('__all__')
+    fields = [
+        'first_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilities'
+    ]
     success_url = reverse_lazy('persona_app:correct')
+
+    def form_valid(self, form):
+        empleado = form.save(commit=False)
+        empleado.full_name = empleado.first_name + ' ' + empleado.last_name
+        empleado.save()
+        return super(EmpleadoCreateView, self).form_valid(form)
