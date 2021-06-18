@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
+)
 
 #models
 from .models import Empleado
@@ -65,3 +68,65 @@ class ListHabilitiesEmployer(ListView):
 class EmployersDetailView(DetailView):
     model = Empleado
     template_name = "persona/detail_employer.html"
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(EmployersDetailView, self).get_context_data(**kwargs)
+        context['title'] = 'Employee of the month'
+        return context
+
+
+
+class SuccessView(TemplateView):
+    template_name = "persona/success.html"
+
+    
+
+class EmpleadoCreateView(CreateView):
+    model = Empleado
+    template_name = "persona/create_employer.html"
+    #fields = ['first_name', 'last_name', 'job']
+    fields = [
+        'first_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilities'
+    ]
+    success_url = reverse_lazy('persona_app:correct')
+
+    def form_valid(self, form):
+        empleado = form.save(commit=False)
+        empleado.full_name = empleado.first_name + ' ' + empleado.last_name
+        empleado.save()
+        return super(EmpleadoCreateView, self).form_valid(form)
+
+
+class EmployerUpdateView(UpdateView):
+    model = Empleado
+    template_name = "persona/update.html"
+    fields = [
+        'first_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilities'
+    ]
+    success_url = reverse_lazy('persona_app:correct')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print(request.POST)
+        print(request.POST['last_name'])
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        return super(EmployerUpdateView, self).form_valid(form)
+
+
+class EmployerDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"
+    success_url = reverse_lazy('persona_app:correct')
+
+
