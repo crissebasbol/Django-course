@@ -6,7 +6,7 @@ new Vue({
   mounted() {
     var self = this;
     // cargamos lista de personas
-    axios.get('/api/persona/lista/')
+    axios.get('/api/person/list/')
       .then(function (response) {
         self.listaPersonas = response.data;
       })
@@ -17,7 +17,7 @@ new Vue({
   methods: {
     buscar_persona: function(kword){
       var self = this;
-      axios.get('/api/persona/search/' + kword + '/')
+      axios.get('/api/person/search/' + kword + '/')
         .then(function (response) {
           self.listaPersonas = response.data;
         })

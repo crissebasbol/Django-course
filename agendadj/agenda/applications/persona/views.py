@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from rest_framework.generics import ListAPIView
 
@@ -19,4 +19,17 @@ class PersonListAPIView(ListAPIView):
 
     def get_queryset(self):
         return Person.objects.all()
+
+
+class PersonListView(TemplateView):
+    template_name = "persona/lista.html"
+
+class PersonSearchAPIView(ListAPIView):
+    serializer_class = PersonsSerializer
+
+    def get_queryset(self):
+        kword = self.kwargs['kword']
+        return Person.objects.filter(
+            full_name__icontains=kword
+        )
 
